@@ -36,11 +36,14 @@ li.gl{display:block;padding:0;position:relative}
 .gn{font-weight:800;font-size:1.15rem;overflow-wrap:anywhere}
 .gm{grid-column:1;color:var(--muted);font-size:.93rem}
 .ch{grid-column:2;grid-row:1/3;font-size:1.8rem;line-height:1;color:var(--muted)}
-/* --- Style Tambahan untuk Link Download --- */
+
+/* --- Style Tambahan: Tombol CTA & Link Download --- */
 .dl-wrap{padding:0 16px 16px;margin-top:-6px}
 .dl-link{display:inline-block;background:var(--ok-bg);color:var(--ok-ink);padding:6px 12px;border-radius:8px;font-size:.85rem;font-weight:700;text-decoration:none;border:1px solid rgba(17, 82, 31, 0.2)}
 .dl-link:active{opacity:.7}
-/* ------------------------------------------ */
+.cta-lihat{display:inline-block;margin-top:6px;color:#fff;background:var(--brand);padding:4px 8px;border-radius:6px;font-weight:700;font-size:.85rem}
+/* -------------------------------------------------- */
+
 .count{margin:12px 0;color:var(--muted);font-size:.92rem}
 ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;grid-template-columns:1fr auto;gap:4px 12px}
@@ -103,7 +106,7 @@ footer{padding:26px 0 40px;color:var(--muted);font-size:.82rem}
 <div class="gh" id="gh" hidden><button class="back" id="back">‹ Semua kelompok</button><h2 id="gt"></h2></div>
 <p class="count" id="cnt" aria-live="polite"></p>
 
-<!-- Tampilan Loading Diperbarui Di Sini -->
+<!-- Tampilan Loading -->
 <ul id="list">
   <li class="empty" style="display:block">
     <div class="loading-box">
@@ -114,7 +117,7 @@ footer{padding:26px 0 40px;color:var(--muted);font-size:.82rem}
     </div>
   </li>
 </ul>
-<!-- ==================================== -->
+<!-- ================== -->
 
 <button class="more" id="more" hidden></button>
 <footer>Data sesuai Simluhtan. Jika data Anda keliru atau belum muncul, hubungi penyuluh.</footer>
@@ -134,7 +137,6 @@ const API_URL='https://script.google.com/macros/s/AKfycbyDcUckXM85HnAHNy36BccdjD
 
 // 2. Daftar Link Download ERDKK Masing-masing Kelompok
 const LINK_DOWNLOAD = {
-  
   "CAHAYA TANI": "https://github.com/mamank757/gapoktanmanurung/raw/main/CAHAYA%20TANI.pdf",
   "CALERU ALAU": "https://github.com/mamank757/gapoktanmanurung/raw/main/CALERU%20ALAU.pdf",
   "CALERU ORAI": "https://github.com/mamank757/gapoktanmanurung/raw/main/CALERU%20ORAI.pdf",
@@ -180,10 +182,11 @@ function render(){
  
  if(grp===null&&!tk.length){
   $('cnt').textContent=groups.length+' kelompok tani. Pilih kelompok Anda, atau ketik nama untuk mencari.';
-  // Modifikasi: Menambahkan tombol link download berdasarkan map LINK_DOWNLOAD
+  // Modifikasi: Menambahkan tombol link download & teks "Lihat Data di Simluhtan"
   $('list').innerHTML=groups.map(g=>{
     const link = LINK_DOWNLOAD[g.name] || '#';
-    return '<li class="gl"><button class="grp" data-i="'+g.i+'"><span class="gn">'+esc(g.name)+'</span><span class="ch" aria-hidden="true">›</span><span class="gm">'+g.n+' petani</span></button>'
+    return '<li class="gl"><button class="grp" data-i="'+g.i+'"><span class="gn">'+esc(g.name)+'</span><span class="ch" aria-hidden="true">›</span>'
+         + '<span class="gm">'+g.n+' petani<br><span class="cta-lihat">Lihat Data di Simluhtan</span></span></button>'
          + '<div class="dl-wrap"><a href="'+link+'" target="_blank" class="dl-link">⬇ Lihat ERDKK 2026</a></div></li>'
   }).join('');
   $('more').hidden=true;return}
