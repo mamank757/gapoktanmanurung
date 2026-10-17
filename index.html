@@ -7,10 +7,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#F2F5EE;--surface:#fff;--ink:#17261B;--muted:#586A5C;--line:#D5DECF;--brand:#1F5A32;--on-brand:#fff;--warn-bg:#FFF1CC;--warn-ink:#6B4A00;--ok-bg:#D8F0DC;--ok-ink:#11521F;--chip:#E6EDDF;
+:root{--bg:#F2F5EE;--surface:#fff;--ink:#17261B;--muted:#586A5C;--line:#D5DECF;--brand:#1F5A32;--on-brand:#fff;--warn-bg:#FFF1CC;--warn-ink:#6B4A00;--ok-bg:#D8F0DC;--ok-ink:#11521F;--chip:#E6EDDF;--ket-bg:#FDE9E4;--ket-ink:#7A2A16;--ket-line:#D9694B;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1912;--surface:#17241B;--ink:#E8F0E9;--muted:#9DB0A1;--line:#2B3D30;--brand:#2E7A47;--on-brand:#fff;--warn-bg:#3A2E0C;--warn-ink:#F3D27A;--ok-bg:#17402A;--ok-ink:#A6E3B6;--chip:#223127}}
-:root[data-theme="dark"]{--bg:#0F1912;--surface:#17241B;--ink:#E8F0E9;--muted:#9DB0A1;--line:#2B3D30;--brand:#2E7A47;--on-brand:#fff;--warn-bg:#3A2E0C;--warn-ink:#F3D27A;--ok-bg:#17402A;--ok-ink:#A6E3B6;--chip:#223127}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1912;--surface:#17241B;--ink:#E8F0E9;--muted:#9DB0A1;--line:#2B3D30;--brand:#2E7A47;--on-brand:#fff;--warn-bg:#3A2E0C;--warn-ink:#F3D27A;--ok-bg:#17402A;--ok-ink:#A6E3B6;--chip:#223127;--ket-bg:#3B1E16;--ket-ink:#F5BFAE;--ket-line:#D9694B}}
+:root[data-theme="dark"]{--bg:#0F1912;--surface:#17241B;--ink:#E8F0E9;--muted:#9DB0A1;--line:#2B3D30;--brand:#2E7A47;--on-brand:#fff;--warn-bg:#3A2E0C;--warn-ink:#F3D27A;--ok-bg:#17402A;--ok-ink:#A6E3B6;--chip:#223127;--ket-bg:#3B1E16;--ket-ink:#F5BFAE;--ket-line:#D9694B}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.45 "Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
@@ -37,12 +37,13 @@ li.gl{display:block;padding:0;position:relative}
 .gm{grid-column:1;color:var(--muted);font-size:.93rem}
 .ch{grid-column:2;grid-row:1/3;font-size:1.8rem;line-height:1;color:var(--muted)}
 
-/* --- Style Tambahan: Tombol CTA & Link Download --- */
-.dl-wrap{padding:0 16px 16px;margin-top:-6px}
+/* --- Style Tambahan --- */
+/* Ubah layout agar dl-wrap menjadi kolom (ke bawah) jika lebih dari satu tombol */
+.dl-wrap{padding:0 16px 16px;margin-top:-6px;display:flex;flex-direction:column;gap:8px;align-items:flex-start;}
 .dl-link{display:inline-block;background:var(--ok-bg);color:var(--ok-ink);padding:6px 12px;border-radius:8px;font-size:.85rem;font-weight:700;text-decoration:none;border:1px solid rgba(17, 82, 31, 0.2)}
 .dl-link:active{opacity:.7}
 .cta-lihat{display:inline-block;margin-top:6px;color:#fff;background:var(--brand);padding:4px 8px;border-radius:6px;font-weight:700;font-size:.85rem}
-/* -------------------------------------------------- */
+/* ---------------------- */
 
 .count{margin:12px 0;color:var(--muted);font-size:.92rem}
 ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
@@ -56,6 +57,9 @@ li{background:var(--surface);border:1px solid var(--line);border-radius:12px;pad
 .st{grid-column:1/-1;margin-top:6px;border-radius:8px;padding:8px 10px;font-size:.9rem;font-weight:600;display:flex;gap:8px;align-items:flex-start}
 .st.no{background:var(--warn-bg);color:var(--warn-ink)}
 .st.ok{background:var(--ok-bg);color:var(--ok-ink)}
+/* Keterangan dari spreadsheet */
+.ket{grid-column:1/-1;border-radius:8px;border-left:4px solid var(--ket-line);background:var(--ket-bg);color:var(--ket-ink);padding:8px 10px;font-size:.9rem;font-weight:600;overflow-wrap:anywhere}
+.ket small{display:block;font-weight:400;font-size:.75rem;opacity:.85}
 mark{background:#F6D76B;color:#2A2000;border-radius:3px;padding:0 1px}
 .empty{background:var(--surface);border:1px dashed var(--line);border-radius:12px;padding:28px 18px;text-align:center;color:var(--muted)}
 .more{display:block;width:100%;margin:14px 0 0;padding:14px;border-radius:12px;border:2px solid var(--brand);background:none;color:var(--ink);font:800 1rem "Plus Jakarta Sans",system-ui,sans-serif;cursor:pointer}
@@ -94,16 +98,16 @@ footer{padding:26px 0 40px;color:var(--muted);font-size:.82rem}
 <body>
 <header><div class="wrap">
 <h1>Cek Data Petani<br>di SIMLUHTAN</h1>
-<p id="sub">Gapoktan Manurung</p>
+<p id="sub">Gapoktan (Gabungan Kelompok Tani) - Desa Manurung</p>
 </div></header>
 <div class="bar"><div class="wrap">
 <div class="search" role="search">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-<input id="q" type="search" placeholder="Ketik nama petani…" autocomplete="off" aria-label="Cari nama petani">
+<input id="q" type="search" placeholder="Ketik untuk mencari nama petani" autocomplete="off" aria-label="Cari nama petani">
 <button class="clear" id="x" aria-label="Hapus pencarian">×</button>
 </div></div></div>
 <main class="wrap">
-<div class="gh" id="gh" hidden><button class="back" id="back">‹ Semua kelompok</button><h2 id="gt"></h2></div>
+<div class="gh" id="gh" hidden><button class="back" id="back">‹ Kembali ke daftar kelompok</button><h2 id="gt"></h2></div>
 <p class="count" id="cnt" aria-live="polite"></p>
 
 <!-- Tampilan Loading -->
@@ -117,25 +121,26 @@ footer{padding:26px 0 40px;color:var(--muted);font-size:.82rem}
     </div>
   </li>
 </ul>
-<!-- ================== -->
+<!-- ==================================== -->
 
 <button class="more" id="more" hidden></button>
-<footer>Data sesuai Simluhtan. Jika data Anda keliru atau belum muncul, hubungi penyuluh.</footer>
+<footer>Data sesuai SIMLUHTAN (Sistem Penyuluh Pertanian). Jika data Anda keliru atau belum muncul, hubungi penyuluh.</footer>
 </main>
 <script>
 const $=id=>document.getElementById(id),PAGE=40;
 let shown=PAGE,rows=[],D=null,grp=null,groups=[];
 function start(d){D=d;
- rows=D.r.map(r=>({n:r[0],p:D.p[r[1]],pi:r[1],j:D.j[r[2]],l:r[3],s:D.s[r[4]],k:(r[0]+' '+D.p[r[1]]).toLowerCase()}));
+ // r[5] = indeks keterangan (kolom "Keterangan" di spreadsheet), D.k = daftar teks keterangan
+ rows=D.r.map(r=>({n:r[0],p:D.p[r[1]],pi:r[1],j:D.j[r[2]],l:r[3],s:D.s[r[4]],t:(D.k&&r[5]!=null?D.k[r[5]]:'')||'',k:(r[0]+' '+D.p[r[1]]).toLowerCase()}));
  groups=D.p.map((name,i)=>({name,i,n:rows.filter(r=>r.pi===i).length})).sort((a,b)=>a.name.localeCompare(b.name,'id',{numeric:true}));
- $('sub').textContent='Gapoktan (Gabungan Kelompok Tani) - Manurung · '+rows.length.toLocaleString('id-ID')+' petani dari '+D.p.length+' kelompok tani';
+ $('sub').textContent='Gapoktan (Gabungan Kelompok Tani) - Desa Manurung · '+rows.length.toLocaleString('id-ID')+' petani dari '+D.p.length+' kelompok tani';
  render();}
 
 // ====== PENGATURAN ======
 // 1. Link Web App Apps Script (API URL)
-const API_URL='https://script.google.com/macros/s/AKfycbyDcUckXM85HnAHNy36BccdjD6oUEUx7iN69tY_rLztAtXq1gX8kvpMQHgfB5MJiGeE/exec';
+const API_URL='https://script.google.com/macros/s/AKfycbzyO7CafzZxw6sUSFxbz1xSAl4kMzcLPLJWLGN0Jlvt0rH21k4-ibWTuVWMmIPME8c0/exec';
 
-// 2. Daftar Link Download ERDKK Masing-masing Kelompok
+// 2. Daftar Link Download ERDKK 2026 Masing-masing Kelompok
 const LINK_DOWNLOAD = {
   "BATU PUTE": "https://github.com/mamank757/gapoktanmanurung/raw/main/BATU%20PUTE.pdf",
   "CAHAYA TANI": "https://github.com/mamank757/gapoktanmanurung/raw/main/CAHAYA%20TANI.pdf",
@@ -161,6 +166,34 @@ const LINK_DOWNLOAD = {
   "SUKAMAJU": "https://github.com/mamank757/gapoktanmanurung/raw/main/SUKAMAJU.pdf",
   "TUJUH DUA": "https://github.com/mamank757/gapoktanmanurung/raw/main/TUJUH%20DUA.pdf"
 };
+
+// 3. Daftar Link Download ERDKK 2027 Masing-masing Kelompok
+const LINK_DOWNLOAD_2027 = {
+  "BATU PUTE": "ISI_LINK_DISINI",
+  "CAHAYA TANI": "ISI_LINK_DISINI",
+  "CALERU ALAU": "ISI_LINK_DISINI",
+  "CALERU ORAI": "ISI_LINK_DISINI",
+  "HARAPAN BARU": "ISI_LINK_DISINI",
+  "HARAPAN I": "ISI_LINK_DISINI",
+  "JAMPU ALAU I": "ISI_LINK_DISINI",
+  "JAMPU ALAU II":"ISI_LINK_DISINI", 
+  "JAMPU ORAI": "ISI_LINK_DISINI",
+  "JENNAE": "ISI_LINK_DISINI",
+  "KAE'E CELLUE": "ISI_LINK_DISINI",
+  "KANDEA": "ISI_LINK_DISINI",
+  "LAMARUA": "ISI_LINK_DISINI",
+  "MAMMINASAE": "ISI_LINK_DISINI",
+  "MASSELOMOE": "ISI_LINK_DISINI",
+  "MTTIRO DECENG": "ISI_LINK_DISINI",
+  "MAWELLANG": "ISI_LINK_DISINI",
+  "PELITA TERNAK": "ISI_LINK_DISINI",
+  "RIAMASEI": "ISI_LINK_DISINI",
+  "SINAR HARAPAN": "ISI_LINK_DISINI",
+  "SIPAKAINGE": "ISI_LINK_DISINI",
+  "SIPAKATAU": "ISI_LINK_DISINI",
+  "SUKAMAJU": "ISI_LINK_DISINI",
+  "TUJUH DUA": "ISI_LINK_DISINI"
+};
 // ========================
 
 function fail(msg){$('list').innerHTML='<li class="empty" style="display:block"><strong>Data belum bisa dimuat.</strong><br>'+msg+'</li>'}
@@ -178,17 +211,20 @@ function render(){
  const q=$('q').value.trim().toLowerCase(),tk=q?q.split(/\s+/):[];
  $('x').classList.toggle('on',!!q);
  $('gh').hidden=grp===null;
- $('q').placeholder=grp===null?'Ketik nama petani…':'Cari nama di kelompok ini…';
+ $('q').placeholder=grp===null?'Cari nama petani...':'Cari nama di kelompok ini…';
  if(grp!==null)$('gt').textContent=D.p[grp];
  
  if(grp===null&&!tk.length){
   $('cnt').textContent=groups.length+' kelompok tani. Pilih kelompok Anda, atau ketik nama untuk mencari.';
-  // Modifikasi: Menambahkan tombol link download & teks "Lihat Data di Simluhtan"
   $('list').innerHTML=groups.map(g=>{
-    const link = LINK_DOWNLOAD[g.name] || '#';
+    const link2026 = LINK_DOWNLOAD[g.name] || '#';
+    const link2027 = LINK_DOWNLOAD_2027[g.name] || '#'; 
     return '<li class="gl"><button class="grp" data-i="'+g.i+'"><span class="gn">'+esc(g.name)+'</span><span class="ch" aria-hidden="true">›</span>'
-         + '<span class="gm">'+g.n+' petani<br><span class="cta-lihat">Lihat Data di Simluhtan</span></span></button>'
-         + '<div class="dl-wrap"><a href="'+link+'" target="_blank" class="dl-link">⬇ Lihat ERDKK 2026</a></div></li>'
+         + '<span class="gm">'+g.n+' petani<br><span class="cta-lihat">➡️ Lihat Data di Simluhtan</span></span></button>'
+         + '<div class="dl-wrap">'
+         + '<a href="'+link2026+'" target="_blank" class="dl-link">⬇ Download ERDKK 2026</a>'
+         + '<a href="'+link2027+'" target="_blank" class="dl-link">⬇ Download ERDKK 2027 (belum tersedia)</a>'
+         + '</div></li>'
   }).join('');
   $('more').hidden=true;return}
   
@@ -199,7 +235,9 @@ function render(){
   const ok=/^(sudah|terdaftar)/i.test(r.s);
   return '<li><span class="nm">'+hl(r.n,re)+'</span><span class="ha">'+r.l.toLocaleString('id-ID',{maximumFractionDigits:2})+' ha<small>luas lahan</small></span>'
   +'<span class="meta">'+hl(r.p,re)+' <span class="jab'+(r.j!=='Anggota'?' pj':'')+'">'+esc(r.j)+'</span></span><span></span>'
-  +'<div class="st '+(ok?'ok':'no')+'"><span aria-hidden="true">'+(ok?'✔':'⏳')+'</span><span>ERDKK 2027: '+esc(r.s)+'</span></div></li>'}).join('')
+  +'<div class="st '+(ok?'ok':'no')+'"><span aria-hidden="true">'+(ok?'✔':'⏳')+'</span><span>ERDKK 2027: '+esc(r.s)+'</span></div>'
+  +(r.t?'<div class="ket"><small>Keterangan</small>'+esc(r.t)+'</div>':'')
+  +'</li>'}).join('')
   :'<li class="empty" style="display:block"><strong>Nama tidak ditemukan.</strong><br>Coba tulis sebagian nama saja atau periksa ejaannya.</li>';
  const left=res.length-shown;$('more').hidden=left<=0;$('more').textContent='Tampilkan lagi';
 }
